@@ -1,0 +1,25 @@
+#include "grid_method.h"
+
+#include "Eigen/Dense"
+
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////// Grid /////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+gm::grid::grid(int num_cells, float size_cells, Eigen::Array2f center_coords)
+    : num_cells(num_cells), size_cells(size_cells)
+    {
+    // // 2D, arbitrary probability distribution or likelihood
+    // Eigen::Array<float, Eigen::Dynamic, Eigen::Dynamic> distribution;
+
+    // // Mesh of x, y coordinates to underlay an estimation distribution
+    // Eigen::Array<float, Eigen::Dynamic, Eigen::Dynamic> x_coords;
+    // Eigen::Array<float, Eigen::Dynamic, Eigen::Dynamic> y_coords;
+    
+    }
+
+/////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////// Grid Filter //////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+gm::grid_filter_2d::grid_filter_2d(float delta_t, float delta_grid)
+    : delta_t(delta_t), delta_grid(delta_grid)
+    {}
