@@ -2,6 +2,7 @@
 #ifndef GRID_METHOD
 #define GRID_METHOD
 
+#include <vector>
 #include "Eigen/Dense"
 
 namespace gm
@@ -11,18 +12,17 @@ namespace gm
 /////////////////////////////////////////////////////////////////////////////////
     class grid {
         private:
-            const int num_cells;
-            const float size_cells;
+            const int num_dims; // The number of dimensions of this grid
+            const std::vector<std::string> dim_names; // The names of each dimension being stored (e.g. x, y, x_vel, y_vel)
+            const std::vector<float> dim_resolutions; // The resolutions of each dimension in their appropriate units (e.g. 0.05 m)
+            std::vector<float> dim_lengths;  // How long each dimension is (e.g. 10 m, 5 m/s)
+            std::vector<float> dim_origins; // The value of the first cell in each dimension
+            std::vector<int> dim_sizes;  // How many cells long each dimension is.  Note: Equals dim_lengths / dim_resolutions and should be an odd number
 
         public:
-            // 2D, arbitrary probability distribution or likelihood
-            Eigen::Array<float, Eigen::Dynamic, Eigen::Dynamic> distribution;
+            Eigen::Vector<float, Eigen::Dynamic> distribution; // The distribution being tracked by this grid
 
-            // Mesh of x, y coordinates to underlay an estimation distribution
-            Eigen::Array<float, Eigen::Dynamic, Eigen::Dynamic> x_coords;
-            Eigen::Array<float, Eigen::Dynamic, Eigen::Dynamic> y_coords;
-
-            grid(int num_cells, float size_cells, Eigen::Array2f center_coords);
+            grid(int num_dims); //, std::vector<std::string> dim_names, std::vector<float> dim_resolutions, std::vector<float> dim_lengths, std::vector<float> dim_origins
     };
 
 /////////////////////////////////////////////////////////////////////////////////
